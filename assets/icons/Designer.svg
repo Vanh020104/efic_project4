@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+    <!-- Vòng tròn nền -->
+    <circle cx="32" cy="32" r="32" fill="#4CAF50"/>
+  
+    <!-- Thân bút -->
+    <rect x="28" y="14" width="8" height="30" fill="#FFFFFF"/>
+    
+    <!-- Đầu bút -->
+    <polygon points="32,4 24,14 40,14" fill="#FFEB3B"/>
+  
+    <!-- Cục gôm bút -->
+    <rect x="28" y="44" width="8" height="6" fill="#F44336"/>
+  
+    <!-- Text Designer -->
+    <text x="50%" y="60" font-family="Arial" font-size="10" fill="#FFFFFF" text-anchor="middle">
+      Designer
+    </text>
+  </svg>
+  
