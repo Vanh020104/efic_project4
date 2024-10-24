@@ -149,7 +149,7 @@ class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                     topRight: Radius.circular(30.0),
                   ),
                   child: Image.network(
-                    'http://10.0.2.2:8080/api/v1/product-images/imagesPost/${widget.product.images[0].imageUrl}',
+                    widget.product.images[0].imageUrl,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return const Icon(Icons.error, size: 110);

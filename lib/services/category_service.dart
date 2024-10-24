@@ -26,21 +26,22 @@ class CategoryService {
       print('Response body: ${response.body}');
       
       Map<String, dynamic> body = jsonDecode(response.body);
-      List<dynamic> data = body['data'];
-      List<Category> categoryParent = data.map((dynamic item) => Category.fromJson(item)).toList();
+      List<dynamic> content = body['data']['content'];
+      List<Category> categoryParent = content.map((dynamic item) => Category.fromJson(item)).toList();
       return categoryParent;
     } else {
       print('Failed to load categoryParent: ${response.statusCode}');
       throw Exception('Failed to load categoryParent');
     }
   }
+
   Future<List<Category>> fetchCategoriesByParentId(int parentId) async {
     final response = await http.get(Uri.parse('${apiUrl}parentCategory/$parentId'));
 
     if (response.statusCode == 200) {
       Map<String, dynamic> body = jsonDecode(response.body);
-      List<dynamic> data = body['data'];
-      List<Category> categories = data.map((dynamic item) => Category.fromJson(item)).toList();
+      List<dynamic> content = body['data']['content'];
+      List<Category> categories = content.map((dynamic item) => Category.fromJson(item)).toList();
       return categories;
     } else {
       throw Exception('Failed to load categories by parent id');

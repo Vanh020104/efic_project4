@@ -1,4 +1,11 @@
+import 'package:intl/intl.dart';
 import 'package:shop/models/category.dart';
+
+// Hàm để chuyển đổi chuỗi ngày tháng thành DateTime
+DateTime parseDate(String dateString) {
+  final DateFormat formatter = DateFormat('dd-MM-yyyy HH:mm:ss');
+  return formatter.parse(dateString);
+}
 
 class Product {
   final int productId;
@@ -44,9 +51,9 @@ class Product {
       manufacturer: json['manufacturer'],
       size: json['size'],
       weight: json['weight'],
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
-      deletedAt: json['deletedAt'] != null ? DateTime.parse(json['deletedAt']) : null,
+      createdAt: parseDate(json['createdAt']),
+      updatedAt: parseDate(json['updatedAt']),
+      deletedAt: json['deletedAt'] != null ? parseDate(json['deletedAt']) : null,
       category: json['category'] != null ? Category.fromJson(json['category']) : null,
     );
   }

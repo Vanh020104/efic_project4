@@ -53,7 +53,7 @@ class PopularProducts extends StatelessWidget {
                       ),
                       child: ProductCard(
                         image: product.images.isNotEmpty
-                            ? 'http://10.0.2.2:8080/api/v1/product-images/imagesPost/' + product.images[0].imageUrl
+                            ?  product.images[0].imageUrl
                             : 'assets/images/0055.png_860.png',
                         manufacturer: product.manufacturer,
                         price: product.price,

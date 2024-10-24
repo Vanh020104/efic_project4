@@ -84,7 +84,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     ],
                   ),
                   ProductImages(
-                    images: product.images.map((image) => 'http://10.0.2.2:8080/api/v1/product-images/imagesPost/${image.imageUrl}').toList(),
+                    images: product.images.map((image) => image.imageUrl).toList(),
                   ),
                   ProductInfo(
                     brand: product.manufacturer,
