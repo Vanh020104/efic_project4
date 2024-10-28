@@ -23,7 +23,7 @@ class CategoryService {
 
     if (response.statusCode == 200) {
       // In ra phản hồi từ API để kiểm tra cấu trúc
-      print('Response body: ${response.body}');
+      // print('Response body: ${response.body}');
       
       Map<String, dynamic> body = jsonDecode(response.body);
       List<dynamic> content = body['data']['content'];

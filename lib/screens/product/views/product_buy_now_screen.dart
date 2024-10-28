@@ -92,7 +92,7 @@ class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                     subTitle: "Total price",
                     press: () async {
                       final cartItem = CartItem(
-                        userId: userId.toString(), 
+                        userId: userId.toString(),
                         productId: widget.product.productId.toString(),
                         quantity: quantity,
                       );
@@ -101,19 +101,21 @@ class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                         await cartService.addToCart(cartItem);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('Item added to cart successfully!', style: TextStyle(
-                              color: Colors.white,
-                               fontWeight: FontWeight.bold,),
+                            content: Text(
+                              'Item added to cart successfully!',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
                               ),
+                            ),
                             backgroundColor: primaryColor,
                           ),
                         );
-                        } catch (e) {
-
+                      } catch (e) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Add to cart failed!',
+                              'Add to cart failed: $e',
                               style: const TextStyle(
                                 color: Colors.red,
                                 fontSize: 14,
@@ -138,11 +140,10 @@ class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
             pinned: true,
             floating: true,
             snap: true,
-            expandedHeight: 350.0, // Tăng chiều cao để có thêm khoảng cách
+            expandedHeight: 350.0,
             flexibleSpace: FlexibleSpaceBar(
-              // title: Text(widget.product.name), // Sử dụng tên từ product
               background: Padding(
-                padding: const EdgeInsets.all(8.0), // Thêm padding
+                padding: const EdgeInsets.all(8.0),
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30.0),
@@ -173,8 +174,8 @@ class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                 children: [
                   Expanded(
                     child: UnitPrice(
-                      price: widget.product.price, // Sử dụng giá từ product
-                      priceAfterDiscount: widget.product.price, // Sử dụng giá sau giảm giá từ product
+                      price: widget.product.price,
+                      priceAfterDiscount: widget.product.price,
                     ),
                   ),
                   ProductQuantity(
@@ -235,8 +236,7 @@ class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
               },
             ),
           ),
-          const SliverToBoxAdapter(
-              child: SizedBox(height: defaultPadding))
+          const SliverToBoxAdapter(child: SizedBox(height: defaultPadding))
         ],
       ),
     );
