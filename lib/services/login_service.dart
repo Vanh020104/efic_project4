@@ -15,19 +15,27 @@ class LoginService {
     if (response.statusCode == 200) {
       final responseBody = jsonDecode(response.body);
       final token = responseBody['accessToken'];
-      final refreshToken = responseBody['refreshToken']; 
+      final refreshToken = responseBody['refreshToken'];
       final userId = responseBody['id'];
-      final roles = responseBody['roles']; 
-      
+      final roles = responseBody['roles'];
+
+      // In ra dữ liệu trả về
+      print('Login successful:');
+      print('Access Token: $token');
+      print('Refresh Token: $refreshToken');
+      print('User ID: $userId');
+      print('Roles: $roles');
+
       if (token != null && userId != null && roles != null) {
         final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('accessToken', token); 
+        await prefs.setString('accessToken', token);
         await prefs.setString('refreshToken', refreshToken);
-        await prefs.setInt('userId', userId); 
-        await prefs.setStringList('roles', List<String>.from(roles)); 
+        await prefs.setInt('userId', userId);
+        await prefs.setStringList('roles', List<String>.from(roles));
       }
       return responseBody;
     } else {
+      print('Login failed: ${response.body}');
       throw Exception('Failed to login');
     }
   }
@@ -42,16 +50,14 @@ class LoginService {
     await prefs.remove('accessToken');
     await prefs.remove('refreshToken');
     await prefs.remove('userId');
-    await prefs.remove('roles'); // Xóa roles khi đăng xuất
+    await prefs.remove('roles');
   }
 
-  // Hàm lấy danh sách roles đã lưu
   Future<List<String>?> getRoles() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getStringList('roles'); // Lấy danh sách roles
+    return prefs.getStringList('roles');
   }
 
-  // Hàm lấy userId đã lưu
   Future<int?> getUserId() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getInt('userId');

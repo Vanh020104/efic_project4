@@ -265,15 +265,19 @@ void _placeOrder(List<Map<String, dynamic>> cartItems) async {
                         // Product list section
                         ...cartItems.map((item) {
                           final productName = item['productName'];
-                          final productPrice = item['productPrice'].toStringAsFixed(2);
+                          final productPrice = (item['productPrice'] as double).toStringAsFixed(2);
                           final quantity = item['quantity'];
-                          final imageUrl =
-                              'http://10.0.2.2:8080/api/v1/product-images/imagesPost/${item['productImages'][0]}';
+                          final imageUrl = item['productImages'];
+
+                          // Nếu imageUrl là một danh sách, lấy URL đầu tiên
+                          final imageUrlString = imageUrl is List && imageUrl.isNotEmpty
+                              ? imageUrl[0]
+                              : imageUrl;
 
                           return Column(
                             children: [
                               productItem(
-                                imageUrl: imageUrl,
+                                imageUrl: imageUrlString,
                                 productName: productName,
                                 price: '\$$productPrice',
                                 quantity: 'x$quantity',
